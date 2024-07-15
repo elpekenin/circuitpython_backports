@@ -1,6 +1,10 @@
 def abstractmethod(func):
     """Decorator marking a function as **must** be overriden."""
-    raise NotImplementedError
+
+    def wrapper(*args, **kwargs):
+        raise NotImplementedError
+
+    return wrapper
 
 
 class ABC:
