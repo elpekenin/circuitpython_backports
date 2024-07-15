@@ -4,13 +4,13 @@ class partial:
     """
 
     def __init__(self, func, *args, **kwargs):
-        self.func = func
-        self.args = args
-        self.kwargs = kwargs
+        self._func = func
+        self._args = args
+        self._kwargs = kwargs
 
     def __call__(self, *args, **kwargs):
-        kw = self.kwargs | kwargs
-        return self.func(*self.args, *args, **kw)
+        kw = self._kwargs | kwargs
+        return self._func(*self._args, *args, **kw)
 
 
 def wraps(func):

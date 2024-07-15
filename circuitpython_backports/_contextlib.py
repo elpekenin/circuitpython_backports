@@ -7,6 +7,23 @@ def contextmanager(__func):
     return wrapper
 
 
+class suppress:
+    """Context manager to ignore some exceptions."""
+
+    def __init__(self, *exceptions):
+        self._exc = exceptions
+
+    def __enter__(self):
+        return None
+
+    def __exit__(self, exc_type, exc_value, traceback) -> None:
+        if exc_type is None:  # there was no exception
+            return
+
+        if issubclass(exc_type, self._exc):
+            return True  # ignore expected error
+
+
 class ContextManager:
     """Convenience class to create a context manager based on a generator."""
 
