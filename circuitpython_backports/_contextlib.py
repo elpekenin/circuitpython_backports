@@ -16,7 +16,7 @@ class suppress:
     def __enter__(self):
         return None
 
-    def __exit__(self, exc_type, exc_value, traceback) -> None:
+    def __exit__(self, exc_type, exc_value, traceback):
         if exc_type is None:  # there was no exception
             return
 
@@ -30,11 +30,10 @@ class ContextManager:
     def __init__(self, __generator):
         self._gen = __generator
 
-    def __enter__(self) -> None:
-        next(self._gen)
-        return self
+    def __enter__(self):
+        return next(self._gen)
 
-    def __exit__(self, exc_type, exc_value, traceback) -> None:
+    def __exit__(self, exc_type, exc_value, traceback):
         if exc_type is None:  # there was no exception
             try:
                 next(self._gen)
