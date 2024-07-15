@@ -24,7 +24,8 @@ def lru_cache(maxsize=None):
             # remove item if size reached
             if len(_cache) == maxsize:
                 # first key == oldest
-                _cache.pop(_cache.keys()[0])
+                key_it = iter(_cache.keys())
+                _cache.pop(next(key_it))
 
             # save in cache
             _cache[key] = ret
