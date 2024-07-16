@@ -36,19 +36,17 @@ def lru_cache(maxsize=None):
     return wrapper
 
 
-class partial:
+def partial(func, *args, **kwargs):
     """Create a new function by storing some arguments to be passed into
     an existing function.
     """
 
-    def __init__(self, func, *args, **kwargs):
-        self._func = func
-        self._args = args
-        self._kwargs = kwargs
+    def wrapper(self, *args_, **kwargs_):
+        a = (*args, *args_)
+        kw = kwargs | kwargs_
+        return func(*a, **kw)
 
-    def __call__(self, *args, **kwargs):
-        kw = self._kwargs | kwargs
-        return self._func(*self._args, *args, **kw)
+    return wrapper
 
 
 def reduce(func, iterable, initializer=None):
@@ -70,8 +68,4 @@ def wraps(func):
 
     This CircuitPython stub does nothing.
     """
-
-    def wrapper(x):
-        return x
-
-    return wrapper
+    return lambda x: x
