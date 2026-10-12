@@ -15,6 +15,7 @@ from contextlib import contextmanager
 # when using the library, you instead do
 from circuitpython_backports.contextlib import contextmanager
 
+
 # you can now do, as usual
 @contextmanager
 def foo():
@@ -22,6 +23,7 @@ def foo():
         yield
     finally:
         print("Context is over")
+
 
 # note: when running on CPython (computer), the contextlib submodule of the library is
 #       actually an alias for the module in the standard library, while when running on
