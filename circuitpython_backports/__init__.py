@@ -12,8 +12,14 @@ except ImportError:
     # CircuitPython
     from . import (
         _abc as abc,
+    )
+    from . import (
         _contextlib as contextlib,
+    )
+    from . import (
         _functools as functools,
+    )
+    from . import (
         _typing as typing,
     )
 
